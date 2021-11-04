@@ -9,16 +9,16 @@ export default class App extends Component {
   componentDidMount() {
     fetch("http://api.open-notify.org/astros.json")
       .then((response) => response.json())
-      .then((data) => {
+      .then(({people}) => {
         //   console.log(data.people)
-        this.setState({people: data.people})
+        this.setState({people: people})
         // console.log(this.state)
         });
   }
   render() {
     return (
         <ul>
-            {this.state.people.map(p=><li>{p.name}</li>)}
+            {this.state.people.map((p,i)=><li key={i}>{p.name}</li>)}
         </ul>);
   }
 }
